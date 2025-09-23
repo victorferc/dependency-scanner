@@ -154,10 +154,7 @@ async function scan(targetUrl) {
     const runtimeLibs = await runtimeDetect(targetUrl);       // Puppeteer-based
 
     const libs = dedupeLibs([...staticLibs, ...runtimeLibs]); // merge
-
     const tlsExpiry = await getTlsExpiry(targetUrl);
-
-    // (Optionally enrich each lib with latest/outdated + OSV here, like before)
     const enrichedLibs = await Promise.all(libs.map(enrichLib));
 
     const report = {

@@ -7,7 +7,6 @@ import { queryOsvNpmVulns } from "./osv.js";// utils/vulnCheck.js
 export async function determineVulnerabilities(depName, scannedVersion) {
   const npmName = String(depName).toLowerCase().trim();
   const { vulns } = await queryOsvNpmVulns(npmName, scannedVersion);
-  // keep it light: only return top few
   return {
     name: depName,
     version: scannedVersion,
