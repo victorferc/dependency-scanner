@@ -36,6 +36,7 @@ export async function queryOsvNpmVulns(pkgName, version) {
     const cvss = highestCvss(v.severity);
     return {
       id: v.id,                               // e.g., CVE-2020-11022 or GHSA-...
+      aliases: v.aliases || [],
       summary: v.summary || v.details || "",
       severity: cvss ? `${cvss.type}:${cvss.score}` : (v.severity?.[0]?.type || "UNKNOWN"),
       affected: v.affected?.map(a => a.package?.name).filter(Boolean) || []
